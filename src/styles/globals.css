@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts are loaded via index.html ── */
+
+:root {
+  --color-chip:    #05070d;
+  --color-copper:  #F2A33A;
+  --color-cyan:    #2FE6FF;
+  --color-lime:    #7CFF6B;
+  --color-amber:   #FFB020;
+  --color-coral:   #FF5C6C;
+  --color-off-white: #E8ECF4;
+  --color-muted:   #8A93A6;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-chip);
+  color: var(--color-off-white);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Glass panel ── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+}
+
+/* ── Glow button ── */
+.btn-glow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.15s;
+  border: 1.5px solid currentColor;
+  outline-offset: 3px;
+}
+.btn-glow:hover   { transform: translateY(-1px); }
+.btn-glow:active  { transform: translateY(0); }
+.btn-glow:focus-visible { outline: 2px solid var(--color-copper); }
+
+.btn-copper {
+  color: var(--color-copper);
+  background: rgba(242,163,58,0.10);
+}
+.btn-copper:hover {
+  box-shadow: 0 0 20px 4px rgba(242,163,58,0.55),
+              0 0 8px  2px rgba(242,163,58,0.4) inset;
+}
+.btn-cyan {
+  color: var(--color-cyan);
+  background: rgba(47,230,255,0.08);
+}
+.btn-cyan:hover {
+  box-shadow: 0 0 20px 4px rgba(47,230,255,0.55),
+              0 0 8px  2px rgba(47,230,255,0.3) inset;
+}
+.btn-lime {
+  color: var(--color-lime);
+  background: rgba(124,255,107,0.08);
+}
+.btn-lime:hover {
+  box-shadow: 0 0 20px 4px rgba(124,255,107,0.5),
+              0 0 8px  2px rgba(124,255,107,0.25) inset;
+}
+
+/* ── Pulsing border animation ── */
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 6px 1px rgba(242,163,58,0.35); }
+  50%       { box-shadow: 0 0 18px 4px rgba(242,163,58,0.75); }
+}
+.btn-pulse { animation: pulse-border 2.5s ease-in-out infinite; }
+
+/* ── Status chips ── */
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 2px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.03em;
+}
+.chip-met        { background: rgba(124,255,107,0.15); color: #7CFF6B; border: 1px solid rgba(124,255,107,0.3); }
+.chip-partial    { background: rgba(255,176,32,0.15);  color: #FFB020; border: 1px solid rgba(255,176,32,0.3); }
+.chip-above      { background: rgba(255,176,32,0.12);  color: #FFB020; border: 1px solid rgba(255,176,32,0.25); }
+.chip-notmet     { background: rgba(255,92,108,0.15);  color: #FF5C6C; border: 1px solid rgba(255,92,108,0.3); }
+.chip-notdone    { background: rgba(255,92,108,0.10);  color: #FF5C6C; border: 1px solid rgba(255,92,108,0.2); }
+.chip-warn       { background: rgba(255,176,32,0.12);  color: #FFB020; border: 1px solid rgba(255,176,32,0.25); }
+
+/* ── Monospace table ── */
+.mono-table { font-family: "JetBrains Mono", monospace; font-size: 13px; width: 100%; }
+.mono-table th {
+  text-align: left; padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mono-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  vertical-align: top;
+}
+.mono-table tr:last-child td { border-bottom: none; }
+.mono-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* ── Monitor frame for screenshots ── */
+.monitor-frame {
+  border: 2px solid rgba(47,230,255,0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0d14;
+  position: relative;
+}
+.monitor-frame::before {
+  content: "";
+  position: absolute; inset: 0;
+  border: 1px solid rgba(47,230,255,0.08);
+  border-radius: 10px;
+  pointer-events: none; z-index: 1;
+}
+
+/* ── Lightbox backdrop ── */
+.lightbox-backdrop {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Progress bar ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 2.5px;
+  background: linear-gradient(90deg, var(--color-copper), var(--color-cyan));
+  z-index: 10000; transition: width 0.2s;
+}
+
+/* ── Silicon background canvas ── */
+.silicon-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  opacity: 0.18;
+}
+
+/* ── Flow stepper ── */
+.step-node {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 600;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.25s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.step-node.active {
+  border-color: var(--color-copper);
+  background: rgba(242,163,58,0.18);
+  color: var(--color-copper);
+  box-shadow: 0 0 12px rgba(242,163,58,0.5);
+}
+.step-node.done {
+  border-color: var(--color-lime);
+  background: rgba(124,255,107,0.12);
+  color: var(--color-lime);
+}
+
+/* ── KaTeX overrides ── */
+.katex-display { overflow-x: auto; overflow-y: hidden; }
+.katex { font-size: 1em !important; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* ── Presenter mode ── */
+.presenter-mode #metrics-strip,
+.presenter-mode nav { display: none !important; }
+.presenter-mode #step-viewer { height: 100vh; }
+
+/* ── Print ── */
+@media print {
+  .silicon-bg, nav, #metrics-strip, #progress-bar,
+  .btn-glow, footer { display: none !important; }
+  .step-viewer-page {
+    page-break-before: always;
+    break-before: page;
+  }
+  body { background: white !important; color: black !important; }
+}
+
+/* ── Signal Wire Animation ── */
+@keyframes wire-pulse {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.wire-animated {
+  animation: wire-pulse 1.4s linear infinite;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
